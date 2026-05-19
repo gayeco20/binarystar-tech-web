@@ -161,9 +161,6 @@ h1.h-title{font-family:'Orbitron',sans-serif;font-size:clamp(1.75rem,4.5vw,3.8re
 .sc:hover{border-color:rgba(0,184,255,.28);box-shadow:0 0 40px rgba(0,184,255,.07),0 20px 50px rgba(0,0,0,.5)}
 .sc:hover::before{transform:scaleX(1)}
 .sc-num{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:rgba(0,184,255,.6);letter-spacing:.15em;margin-bottom:1rem}
-.code-w{background:#000;border:1px solid rgba(0,184,255,.1);border-radius:8px;padding:.85rem 1rem;margin-bottom:1.2rem;font-family:'JetBrains Mono',monospace;font-size:.68rem;line-height:1.8;position:relative;overflow:hidden}
-.code-w::before{content:'● ● ●';position:absolute;top:.4rem;left:.7rem;font-size:.48rem;letter-spacing:.4em;color:#2A2A3A}
-.code-body{padding-top:.85rem;color:#4A6A80}
 .kw{color:#569CD6}.fn{color:#DCDCAA}.str{color:#CE9178}.cm{color:#2A4A2A;font-style:italic}.oki{color:#4EC9B0}
 .sc-icon{width:50px;height:50px;background:rgba(0,184,255,.06);border:1px solid rgba(0,184,255,.14);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.35rem;margin-bottom:1.2rem;transition:all .4s}
 .sc:hover .sc-icon{box-shadow:0 0 18px rgba(0,184,255,.2);background:rgba(0,184,255,.1)}
@@ -379,8 +376,7 @@ footer{padding:2.5rem;display:flex;align-items:center;justify-content:space-betw
     </div>
     <div class="svc-grid">
       <div class="sc stg" data-tilt>
-        <div class="sc-num">// 01_audit.exe</div>
-        <div class="code-w"><div class="code-body"><span class="kw">function</span> <span class="fn">auditoria</span>(<span class="str">empresa</span>) {<br>&nbsp;&nbsp;<span class="cm">// encontrar cuellos de botella</span><br>&nbsp;&nbsp;<span class="kw">return</span> <span class="oki">diagnóstico_real</span>;<br>}</div></div>
+        <div class="sc-num">01_audit.exe</div>
         <div class="sc-icon">🔍</div>
         <h3 class="sc-name" data-text="Auditoría de Negocio">Auditoría de Negocio</h3>
         <p class="sc-desc">Analizamos tu proceso completo de venta y operaciones. Identificamos exactamente qué se repite y qué frena tu crecimiento.</p>
@@ -393,8 +389,7 @@ footer{padding:2.5rem;display:flex;align-items:center;justify-content:space-betw
         <div class="sc-tag">Primer paso</div>
       </div>
       <div class="sc stg" data-tilt>
-        <div class="sc-num">// 02_system.build</div>
-        <div class="code-w"><div class="code-body"><span class="kw">const</span> sistema = {<br>&nbsp;&nbsp;tipo: <span class="str">"personalizado"</span>,<br>&nbsp;&nbsp;empresa: <span class="fn">tuNegocio</span>,<br>&nbsp;&nbsp;status: <span class="oki">"activo ✓"</span><br>}</div></div>
+        <div class="sc-num">02_system.build</div>
         <div class="sc-icon">⚡</div>
         <h3 class="sc-name" data-text="Sistemas Personalizados">Sistemas Personalizados</h3>
         <p class="sc-desc">Construimos el sistema exacto para resolver lo encontrado en la auditoría. Cada solución es única — diseñada para tu empresa.</p>
@@ -407,8 +402,7 @@ footer{padding:2.5rem;display:flex;align-items:center;justify-content:space-betw
         <div class="sc-tag">Core service</div>
       </div>
       <div class="sc stg" data-tilt>
-        <div class="sc-num">// 03_web.deploy</div>
-        <div class="code-w"><div class="code-body"><span class="kw">@scroll</span>(<span class="str">"premium"</span>)<br><span class="fn">class</span> WebAnimada {<br>&nbsp;&nbsp;<span class="cm">// efecto Apple activado</span><br>&nbsp;&nbsp;animaciones = <span class="oki">true</span>;<br>}</div></div>
+        <div class="sc-num">03_web.deploy</div>
         <div class="sc-icon">🌐</div>
         <h3 class="sc-name" data-text="Páginas Web Premium">Páginas Web Premium</h3>
         <p class="sc-desc">Webs profesionales con animaciones de scroll que impresionan desde el primer segundo. Cada sección cobra vida mientras navegas.</p>
@@ -762,17 +756,46 @@ stgMap.forEach((items,parent)=>{
   o.observe(parent);
 });
 
-/* ══ CODE SCRAMBLE ══ */
+/* ══ CODE SCRAMBLE — repeating on every scroll enter/exit ══ */
 const CH='<>{}[]()=+-*/&#!?;:01abcdefABCDEF@%$^~|\\';
-function scramble(el,txt){
-  el.classList.add('scr');let f=0;const tot=38;
+const _sTimers=new Map();
+function scramble(el,txt,toCode){
+  if(_sTimers.has(el))clearInterval(_sTimers.get(el));
+  let f=0;const tot=42;
+  if(toCode)el.classList.add('scr'); else el.classList.add('scr');
   const iv=setInterval(()=>{
-    el.textContent=txt.split('').map((c,i)=>c===' '?' ':i<Math.floor((f/tot)*txt.length)?c:CH[Math.floor(Math.random()*CH.length)]).join('');
-    f++;if(f>tot){el.textContent=txt;el.classList.remove('scr');clearInterval(iv)}
-  },42);
+    el.textContent=txt.split('').map((c,i)=>{
+      if(c===' ')return ' ';
+      const prog=f/tot;
+      if(toCode){return i<Math.floor(prog*txt.length)?CH[Math.floor(Math.random()*CH.length)]:c}
+      else{return i<Math.floor(prog*txt.length)?c:CH[Math.floor(Math.random()*CH.length)]}
+    }).join('');
+    f++;
+    if(f>tot){
+      el.textContent=toCode?txt.split('').map(()=>CH[Math.floor(Math.random()*CH.length)]).join(''):txt;
+      if(!toCode)el.classList.remove('scr');
+      clearInterval(iv);_sTimers.delete(el);
+    }
+  },38);
+  _sTimers.set(el,iv);
 }
-const so=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){setTimeout(()=>scramble(e.target,e.target.dataset.text),350);so.unobserve(e.target)}})},{threshold:.2});
-document.querySelectorAll('.sc-name[data-text]').forEach(el=>so.observe(el));
+const _sState=new Map();
+const so=new IntersectionObserver(es=>{
+  es.forEach(e=>{
+    const prev=_sState.get(e.target);
+    if(e.isIntersecting&&prev!==true){
+      _sState.set(e.target,true);
+      setTimeout(()=>scramble(e.target,e.target.dataset.text,false),180);
+    }else if(!e.isIntersecting&&prev===true){
+      _sState.set(e.target,false);
+      scramble(e.target,e.target.dataset.text,true);
+    }
+  });
+},{threshold:0.15});
+document.querySelectorAll('.sc-name[data-text]').forEach(el=>{
+  _sState.set(el,null);
+  so.observe(el);
+});
 
 /* ══ 3D CARD TILT ══ */
 document.querySelectorAll('[data-tilt]').forEach(card=>{
