@@ -6,7 +6,7 @@
 <title>BinaryStar Tech Engineering — IA & Automatización</title>
 <meta name="description" content="Diseñamos la estructura que impulsa tu visión. De las primeras agencias de automatización con IA del Perú. Atención a nivel nacional.">
 <!-- SECURITY: Content Security Policy -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; script-src 'unsafe-inline'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; script-src 'unsafe-inline'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src https://api.web3forms.com">
 <meta http-equiv="X-Content-Type-Options" content="nosniff">
 <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -497,7 +497,13 @@ footer{padding:2.5rem;display:flex;align-items:center;justify-content:space-betw
       </div>
       <div class="cf rev fr">
         <form id="mainForm" onsubmit="handleForm(event)" data-opened="">
-          <!-- HONEYPOT (anti-bot) -->
+          <!-- Web3Forms config -->
+          <input type="hidden" name="access_key" value="0809be5d-15ac-4441-9d35-423f974f943c">
+          <input type="hidden" name="subject" value="Nuevo contacto desde la web — BinaryStar Tech">
+          <input type="hidden" name="from_name" value="Web BinaryStar Tech">
+          <!-- Web3Forms honeypot anti-bot -->
+          <input type="checkbox" name="botcheck" style="display:none">
+          <!-- HONEYPOT extra (anti-bot) -->
           <div class="fg hp" aria-hidden="true">
             <label>No llenar</label>
             <input type="text" name="website" tabindex="-1" autocomplete="off">
@@ -814,43 +820,62 @@ const srObs=new IntersectionObserver(es=>{
 },{threshold:0,rootMargin:'0px 0px 250px 0px'});
 document.querySelectorAll('.screen-reveal').forEach(el=>srObs.observe(el));
 
-/* ══ FORM SECURITY ══ */
-// Mark when form was opened (for timing check)
+/* ══ FORM — Web3Forms ══ */
 const form=document.getElementById('mainForm');
 if(form)form.dataset.opened=Date.now();
 
-function handleForm(e){
+async function handleForm(e){
   e.preventDefault();
   const f=e.target;
+  const btn=f.querySelector('.fsub');
 
-  // 1. Honeypot check
+  // Honeypot checks
   const hp=f.querySelector('[name="website"]');
-  if(hp&&hp.value.trim()!=='')return; // bot detected
+  if(hp&&hp.value.trim()!=='')return;
 
-  // 2. Timing check: form must take at least 4 seconds to fill
+  // Timing check (min 4s to fill)
   const opened=parseInt(f.dataset.opened||0);
   if(Date.now()-opened<4000)return;
 
-  // 3. Rate limiting via localStorage
+  // Rate limit: 1 envío por minuto
   const lastSub=localStorage.getItem('bst_sub');
   if(lastSub&&Date.now()-parseInt(lastSub)<60000){
-    const btn=f.querySelector('.fsub');
     btn.textContent='Espera 1 minuto antes de enviar otro mensaje';
     btn.style.background='rgba(255,80,80,.6)';
     return;
   }
 
-  // 4. Basic input sanitization check (no script tags)
+  // Sanitización básica
   const allInputs=[...f.querySelectorAll('input,textarea,select')];
-  const hasMalicious=allInputs.some(i=>/<script|javascript:|on\w+=/i.test(i.value));
-  if(hasMalicious)return;
+  if(allInputs.some(i=>/<script|javascript:|on\w+=/i.test(i.value)))return;
 
-  localStorage.setItem('bst_sub',Date.now().toString());
-  const btn=f.querySelector('.fsub');
-  btn.textContent='✓ Mensaje enviado — te contactamos pronto';
-  btn.style.background='linear-gradient(135deg,#16a34a,#15803d)';
+  // Enviar a Web3Forms
+  btn.textContent='Enviando...';
   btn.disabled=true;
+
+  try{
+    const res=await fetch('https://api.web3forms.com/submit',{
+      method:'POST',
+      body:new FormData(f)
+    });
+    const data=await res.json();
+    if(data.success){
+      localStorage.setItem('bst_sub',Date.now().toString());
+      btn.textContent='✓ Mensaje enviado — te contactamos pronto';
+      btn.style.background='linear-gradient(135deg,#16a34a,#15803d)';
+      f.reset();
+    }else{
+      btn.textContent='Error al enviar. Intenta de nuevo.';
+      btn.style.background='rgba(255,80,80,.6)';
+      btn.disabled=false;
+    }
+  }catch{
+    btn.textContent='Error de conexión. Intenta de nuevo.';
+    btn.style.background='rgba(255,80,80,.6)';
+    btn.disabled=false;
+  }
 }
 </script>
 </body>
 </html>
+ 
