@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BinaryStar Tech Engineering — IA & Automatización</title>
+<title>BinaryStar Tech — IA & Automatización</title>
 <meta name="description" content="Diseñamos la estructura que impulsa tu visión. De las primeras agencias de automatización con IA del Perú. Atención a nivel nacional.">
 <!-- SECURITY: Content Security Policy -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; script-src 'unsafe-inline'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src https://api.web3forms.com">
@@ -204,6 +204,12 @@ h1.h-title{font-family:'Orbitron',sans-serif;font-size:clamp(1.75rem,4.5vw,3.8re
 .ptag{background:rgba(0,184,255,.05);border:1px solid rgba(0,184,255,.18);border-radius:8px;padding:.65rem 1.2rem;font-size:.82rem;color:var(--silver)}
 .ptag strong{display:block;color:var(--cyan2);font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.1em;margin-bottom:.2rem}
 
+/* ── PRICING GRID ── */
+.prec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.prec-grid .pb{max-width:none;margin:0}
+.pd-sub{font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:.18em;color:var(--cyan);margin-bottom:1rem;text-transform:uppercase}
+@media(max-width:960px){.prec-grid{grid-template-columns:1fr}}
+
 /* ── CONTACT ── */
 .ct-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:4rem;align-items:start}
 .ct-info .s-title,.ct-info .s-lbl{text-align:left}
@@ -280,7 +286,7 @@ footer{padding:2.5rem;display:flex;align-items:center;justify-content:space-betw
 <nav id="nav">
   <a href="#hero" class="nav-logo">
     <img src="assets/logo.png" alt="BinaryStar Tech" onerror="this.style.display='none'">
-    <div class="nav-logo-t">Binary Star Tech <span>Engineering</span></div>
+    <div class="nav-logo-t">Binary Star Tech</div>
   </a>
   <ul>
     <li><a href="#sobre-wrap">Nosotros</a></li>
@@ -295,7 +301,7 @@ footer{padding:2.5rem;display:flex;align-items:center;justify-content:space-betw
   <canvas id="heroCanvas"></canvas>
   <div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
   <div class="h-inner">
-    <img src="assets/logo.png" alt="BinaryStar Tech Engineering" class="h-logo" onerror="this.style.display='none'">
+    <img src="assets/logo.png" alt="BinaryStar Tech" class="h-logo" onerror="this.style.display='none'">
     <div class="h-badge">IA · Automatización · Cajamarca</div>
     <h1 class="h-title" id="heroTitle"><span class="blink-cur"></span></h1>
     <p class="h-sub">Somos una de las primeras agencias de automatización con inteligencia artificial del Perú. Transformamos tus procesos en sistemas que trabajan solos — atendemos empresas a nivel nacional.</p>
@@ -337,7 +343,7 @@ footer{padding:2.5rem;display:flex;align-items:center;justify-content:space-betw
       <div class="ab-text">
         <span class="s-lbl rev">quiénes somos</span>
         <div class="cr"><div class="ci2"><h2 class="s-title">Tecnología del futuro,<br>para tu negocio hoy.</h2></div></div>
-        <p class="rev">En <strong>BinaryStar Tech Engineering</strong> hacemos algo que pocas agencias hacen en el Perú: nos metemos en tu negocio, entendemos cómo funciona y construimos sistemas de inteligencia artificial que eliminan el trabajo repetitivo.</p>
+        <p class="rev">En <strong>BinaryStar Tech</strong> hacemos algo que pocas agencias hacen en el Perú: nos metemos en tu negocio, entendemos cómo funciona y construimos sistemas de inteligencia artificial que eliminan el trabajo repetitivo.</p>
         <p class="rev">Somos <strong>de las primeras agencias de automatización con IA del país</strong>. Atendemos empresas a nivel nacional. Si tu empresa todavía depende de tareas manuales, estás perdiendo tiempo — y nosotros podemos recuperarlo.</p>
         <a href="#cont-wrap" class="btn-c rev" style="margin-top:1.5rem">Habla con nosotros →</a>
       </div>
@@ -409,7 +415,7 @@ footer{padding:2.5rem;display:flex;align-items:center;justify-content:space-betw
         <ul class="sc-list">
           <li>Scroll animado estilo Apple</li>
           <li>Diseño adaptado a tu marca</li>
-          <li>Responsive: móvil y escritorio</li>
+          <li>Diseño adaptable: móvil y escritorio</li>
           <li>Optimizada para convertir</li>
         </ul>
         <div class="sc-tag">Web scrolling</div>
@@ -466,16 +472,46 @@ footer{padding:2.5rem;display:flex;align-items:center;justify-content:space-betw
       <span class="s-lbl rev">inversión</span>
       <div class="cr"><div class="ci2"><h2 class="s-title">Precio justo, solución real</h2></div></div>
     </div>
-    <div class="pb rev sc">
-      <div class="pi">⚖️</div>
-      <h3 class="pt">Cada empresa es única — y su precio también</h3>
-      <p class="pd">No tenemos paquetes genéricos porque no hacemos soluciones genéricas. El precio depende de la complejidad del proyecto: algo simple cuesta menos, varios procesos interconectados tienen un precio acorde al valor que entregamos.</p>
-      <div class="p-tags">
-        <div class="ptag"><strong>AUDITORÍA</strong>Diagnóstico a medida</div>
-        <div class="ptag"><strong>SISTEMAS</strong>Precio según proyecto</div>
-        <div class="ptag"><strong>WEB PREMIUM</strong>A consultar</div>
+    <div class="prec-grid">
+      <!-- Pack 1 -->
+      <div class="pb rev sc">
+        <div class="pi">🤖</div>
+        <h3 class="pt">Pack Chat-Bot Pro</h3>
+        <p class="pd-sub">Sin Web</p>
+        <p class="pd">Automatiza la atención a tus clientes con un chat-bot con IA entrenado en tu negocio. Responde consultas, califica leads y agenda citas — las 24 horas, sin intervención humana.</p>
+        <div class="p-tags">
+          <div class="ptag"><strong>INCLUYE</strong>Bot IA personalizado</div>
+          <div class="ptag"><strong>INCLUYE</strong>Integración WhatsApp</div>
+          <div class="ptag"><strong>INCLUYE</strong>Panel de control</div>
+        </div>
+        <a href="#cont-wrap" class="btn-c">Consultar inversión →</a>
       </div>
-      <a href="#cont-wrap" class="btn-c">Hablemos de tu proyecto →</a>
+      <!-- Pack 2 -->
+      <div class="pb rev sc">
+        <div class="pi">🌐</div>
+        <h3 class="pt">Pack Vitrina Digital</h3>
+        <p class="pd-sub">Web + Reserva</p>
+        <p class="pd">Web profesional con animaciones de scroll más sistema de reservas integrado. Tus clientes ven tus servicios y agendan directamente — sin llamadas, sin Excel, sin esfuerzo.</p>
+        <div class="p-tags">
+          <div class="ptag"><strong>INCLUYE</strong>Web premium con scroll</div>
+          <div class="ptag"><strong>INCLUYE</strong>Sistema de reservas</div>
+          <div class="ptag"><strong>INCLUYE</strong>Notificaciones auto</div>
+        </div>
+        <a href="#cont-wrap" class="btn-c">Consultar inversión →</a>
+      </div>
+      <!-- Pack 3 -->
+      <div class="pb rev sc">
+        <div class="pi">🚀</div>
+        <h3 class="pt">Pack E-commerce</h3>
+        <p class="pd-sub">Ecosistema 360</p>
+        <p class="pd">Tu tienda online completa con automatización total: catálogo, pagos, seguimiento de pedidos, chat-bot de soporte y reportes automáticos. Un ecosistema que trabaja solo mientras tú te enfocas en crecer.</p>
+        <div class="p-tags">
+          <div class="ptag"><strong>INCLUYE</strong>Tienda online</div>
+          <div class="ptag"><strong>INCLUYE</strong>Pagos integrados</div>
+          <div class="ptag"><strong>INCLUYE</strong>Automatización total</div>
+        </div>
+        <a href="#cont-wrap" class="btn-c">Consultar inversión →</a>
+      </div>
     </div>
   </div>
 </div>
@@ -532,8 +568,8 @@ footer{padding:2.5rem;display:flex;align-items:center;justify-content:space-betw
 <!-- FOOTER -->
 <div class="footer-wrap">
   <footer>
-    <div class="f-brand">Binary Star Tech · Engineering</div>
-    <div class="f-copy">© 2026 BinaryStar Tech Engineering · Cajamarca, Perú</div>
+    <div class="f-brand">Binary Star Tech</div>
+    <div class="f-copy">© 2026 BinaryStar Tech · Cajamarca, Perú</div>
     <div class="f-links">
       <a href="#svc-wrap">Servicios</a>
       <a href="#proc-wrap">Proceso</a>
