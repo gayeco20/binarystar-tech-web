@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BinaryStar Tech — IA & Automatización</title>
-<meta name="description" content="Diseñamos la estructura que impulsa tu visión. De las primeras agencias de automatización con IA del Perú. Atención a nivel nacional.">
+<meta name="description" content="Tu negocio en piloto automático. De las primeras agencias de automatización con IA del Perú. Transformamos tus procesos en sistemas que trabajan solos. Atención a nivel nacional.">
 <!-- SECURITY: Content Security Policy -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; script-src 'unsafe-inline'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src https://api.web3forms.com">
 <meta http-equiv="X-Content-Type-Options" content="nosniff">
@@ -46,7 +46,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--white);over
 #bgCanvas{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
 
 /* ── PROGRESS ── */
-#prog{position:fixed;top:0;left:0;height:2px;width:0%;background:linear-gradient(90deg,var(--blue),var(--cyan),var(--cyan2));z-index:300;transition:width 0.08s linear;box-shadow:0 0 8px var(--cyan)}
+#prog{position:fixed;top:0;left:0;height:2px;width:0%;background:linear-gradient(90deg,var(--cyan),var(--cyan2));z-index:300;transition:width 0.08s linear;box-shadow:0 0 10px var(--cyan2),0 0 20px rgba(96,208,255,.35)}
 
 /* ── NAV ── */
 nav{position:fixed;top:3px;left:0;right:0;z-index:200;padding:1.1rem 2.5rem;display:flex;align-items:center;justify-content:space-between;transition:all 0.4s}
@@ -65,13 +65,14 @@ nav ul a:hover::after{width:100%}
 .nav-cta::after{display:none!important}
 
 /* ── PAGE SECTIONS: relative + z-index so they sit above bgCanvas ── */
-#hero,#sobre-wrap,#svc-wrap,#why-wrap,#proc-wrap,#prec-wrap,#cont-wrap,.footer-wrap,.ticker-wrap{
+#hero,#sobre-wrap,#svc-wrap,#why-wrap,#casos-wrap,#prec-wrap,#como-wrap,#cont-wrap,.footer-wrap,.ticker-wrap{
   position:relative;z-index:1;
 }
 
 /* ── HERO ── */
 #hero{height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;background:transparent}
-#heroCanvas{position:absolute;inset:0;width:100%;height:100%;z-index:0}
+#starsCanvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+#heroCanvas{position:absolute;inset:0;width:100%;height:100%;z-index:1}
 .orb{position:absolute;border-radius:50%;filter:blur(110px);pointer-events:none;z-index:0}
 .o1{width:520px;height:520px;background:radial-gradient(circle,rgba(30,79,156,.35),transparent 70%);top:-15%;left:-8%;animation:of 11s ease-in-out infinite}
 .o2{width:420px;height:420px;background:radial-gradient(circle,rgba(0,184,255,.2),transparent 70%);bottom:5%;right:-5%;animation:of 14s ease-in-out infinite reverse}
@@ -119,7 +120,6 @@ h1.h-title{font-family:'Orbitron',sans-serif;font-size:clamp(1.75rem,4.5vw,3.8re
 #sobre-wrap{background:var(--sec-bg)}
 #svc-wrap{background:rgba(2,2,12,.85)}
 #why-wrap{background:var(--sec-bg)}
-#proc-wrap{background:rgba(1,1,8,.88)}
 #prec-wrap{background:rgba(2,2,15,.90)}
 #cont-wrap{background:var(--sec-bg)}
 .footer-wrap{background:rgba(0,0,5,.94);border-top:1px solid var(--border-c)}
@@ -128,7 +128,6 @@ h1.h-title{font-family:'Orbitron',sans-serif;font-size:clamp(1.75rem,4.5vw,3.8re
 #sobre-wrap::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 80% 50%, rgba(30,79,156,.08), transparent);pointer-events:none}
 #svc-wrap::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 20% 40%, rgba(0,184,255,.05), transparent);pointer-events:none}
 #why-wrap::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 70% 60%, rgba(90,40,180,.07), transparent);pointer-events:none}
-#proc-wrap::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 60% at 30% 50%, rgba(30,79,156,.06), transparent);pointer-events:none}
 #prec-wrap::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 70% at 50% 50%, rgba(0,184,255,.06), transparent);pointer-events:none}
 
 /* ── ABOUT ── */
@@ -194,9 +193,14 @@ h1.h-title{font-family:'Orbitron',sans-serif;font-size:clamp(1.75rem,4.5vw,3.8re
 .tb p{color:var(--silver);font-size:.83rem;line-height:1.75;font-weight:300}
 
 /* ── PRICING ── */
-.pb{background:rgba(255,255,255,.025);border:1px solid rgba(0,184,255,.18);border-radius:16px;padding:4rem 3rem;text-align:center;position:relative;overflow:hidden;max-width:700px;margin:0 auto}
+.pb{background:rgba(255,255,255,.025);border:1px solid rgba(0,184,255,.18);border-radius:16px;padding:4rem 3rem;text-align:center;position:relative;overflow:hidden;max-width:700px;margin:0 auto;transition:transform .35s ease,box-shadow .35s ease,border-color .35s ease}
 .pb::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--cyan),transparent)}
 .pb::after{content:'';position:absolute;bottom:-80px;left:50%;transform:translateX(-50%);width:300px;height:300px;background:radial-gradient(circle,rgba(0,184,255,.07),transparent 70%);pointer-events:none}
+.prec-grid .pb:hover{
+  transform:translateY(-10px);
+  border-color:rgba(96,208,255,.5);
+  box-shadow:0 0 28px rgba(96,208,255,.14),0 0 0 1px rgba(96,208,255,.2),0 24px 56px rgba(0,0,0,.65);
+}
 .pi{font-size:2.6rem;margin-bottom:1.2rem}
 .pt{font-family:'Orbitron',sans-serif;font-size:clamp(1.2rem,2.5vw,1.7rem);font-weight:700;color:var(--white);margin-bottom:1rem}
 .pd{color:var(--silver);font-size:.94rem;line-height:1.9;font-weight:300;margin-bottom:2.2rem}
@@ -209,6 +213,47 @@ h1.h-title{font-family:'Orbitron',sans-serif;font-size:clamp(1.75rem,4.5vw,3.8re
 .prec-grid .pb{max-width:none;margin:0}
 .pd-sub{font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:.18em;color:var(--cyan);margin-bottom:1rem;text-transform:uppercase}
 @media(max-width:960px){.prec-grid{grid-template-columns:1fr}}
+
+/* ── CASOS DE ÉXITO ── */
+#casos-wrap{background:rgba(2,2,12,.88)}
+#casos-wrap::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 30% 50%,rgba(30,79,156,.08),transparent);pointer-events:none}
+.casos-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.caso-card{background:var(--card-bg);border:1px solid var(--border);border-radius:14px;padding:2.2rem;position:relative;overflow:hidden;transition:border-color .4s,box-shadow .4s,transform .05s;transform-style:preserve-3d;will-change:transform}
+.caso-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);transform:scaleX(0);transition:transform .5s;transform-origin:left}
+.caso-card:hover{border-color:rgba(0,184,255,.28);box-shadow:0 0 40px rgba(0,184,255,.07),0 20px 50px rgba(0,0,0,.5)}
+.caso-card:hover::before{transform:scaleX(1)}
+.caso-num{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:rgba(0,184,255,.6);letter-spacing:.15em;margin-bottom:1rem}
+.caso-icon{font-size:2.1rem;margin-bottom:.8rem;display:block}
+.caso-tag{display:inline-flex;align-items:center;background:rgba(0,184,255,.06);border:1px solid rgba(0,184,255,.16);border-radius:100px;padding:.22rem .75rem;font-size:.58rem;letter-spacing:.14em;color:var(--cyan);font-family:'Orbitron',sans-serif;margin-bottom:1rem}
+.caso-name{font-family:'Orbitron',sans-serif;font-size:.92rem;font-weight:700;color:var(--white);margin-bottom:.4rem;line-height:1.3}
+.caso-biz{font-size:.72rem;color:var(--muted);margin-bottom:.85rem;font-family:'JetBrains Mono',monospace;letter-spacing:.04em}
+.caso-desc{color:var(--silver);font-size:.83rem;line-height:1.75;font-weight:300;margin-bottom:1rem}
+.caso-features{list-style:none}
+.caso-features li{font-size:.76rem;color:var(--muted);padding:.28rem 0;border-top:1px solid rgba(255,255,255,.04);display:flex;align-items:center;gap:.5rem}
+.caso-features li::before{content:'▸';color:var(--cyan);font-size:.62rem;flex-shrink:0}
+@media(max-width:960px){.casos-grid{grid-template-columns:1fr}}
+
+/* ── CÓMO TRABAJAMOS (proc2) ── */
+#como-wrap{background:rgba(1,1,8,.92)}
+#como-wrap::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(0,184,255,.05),transparent);pointer-events:none}
+.proc2-outer{position:relative;padding:1.5rem 0 0}
+.proc2-rail{position:absolute;top:35px;left:12.5%;right:12.5%;height:2px;z-index:0;pointer-events:none}
+.proc2-rail-bg{position:absolute;inset:0;background:rgba(0,184,255,.1);border-radius:2px}
+.proc2-rail-fill{position:absolute;top:0;left:0;height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--cyan2));border-radius:2px;box-shadow:0 0 12px rgba(0,184,255,.5),0 0 24px rgba(0,184,255,.25)}
+.proc2-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;position:relative;z-index:1}
+.proc2-step{display:flex;flex-direction:column;align-items:center;text-align:center;gap:1rem}
+.proc2-dot{width:70px;height:70px;flex-shrink:0;border-radius:50%;background:rgba(0,0,8,.95);border:2px solid rgba(0,184,255,.28);display:flex;align-items:center;justify-content:center;font-family:'Orbitron',sans-serif;font-size:.6rem;font-weight:700;color:var(--cyan);transition:all .4s;box-shadow:0 0 0 6px rgba(0,184,255,.04)}
+.proc2-step:hover .proc2-dot{border-color:var(--cyan);background:rgba(0,184,255,.1);box-shadow:0 0 22px rgba(0,184,255,.4),0 0 0 6px rgba(0,184,255,.08)}
+.proc2-step-info{display:flex;flex-direction:column;gap:.35rem}
+.proc2-icon{font-size:1.5rem}
+.proc2-title{font-family:'Orbitron',sans-serif;font-size:.8rem;font-weight:700;color:var(--white)}
+.proc2-desc{color:var(--silver);font-size:.82rem;line-height:1.75;font-weight:300}
+@media(max-width:768px){
+  .proc2-rail{display:none}
+  .proc2-steps{grid-template-columns:1fr;gap:2rem}
+  .proc2-step{flex-direction:row;text-align:left;align-items:flex-start;gap:1.2rem}
+  .proc2-dot{width:52px;height:52px;font-size:.55rem}
+}
 
 /* ── CONTACT ── */
 .ct-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:4rem;align-items:start}
@@ -258,6 +303,39 @@ footer{padding:2.5rem;display:flex;align-items:center;justify-content:space-betw
   clip-path:polygon(0 0%,100% 0%,100% 100%,0 100%);
 }
 
+/* ── SECTION ENTRANCE ── */
+.sec-reveal{
+  opacity:0;
+  transform:translateY(30px);
+  transition:opacity .85s ease,transform .85s ease;
+}
+.sec-reveal.in{opacity:1;transform:translateY(0)}
+
+/* ── WHATSAPP FLOAT ── */
+#wa-btn{
+  position:fixed;bottom:28px;right:28px;z-index:400;
+  width:56px;height:56px;border-radius:50%;
+  background:#25D366;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 20px rgba(37,211,102,.45);
+  transition:transform .25s ease,box-shadow .25s ease;
+  text-decoration:none;
+}
+#wa-btn::before{
+  content:'';position:absolute;
+  width:56px;height:56px;border-radius:50%;
+  background:rgba(37,211,102,.35);
+  animation:waPulse 2.6s ease-out infinite;
+  pointer-events:none;
+}
+@keyframes waPulse{
+  0%{transform:scale(1);opacity:.8}
+  70%{transform:scale(1.7);opacity:0}
+  100%{transform:scale(1.7);opacity:0}
+}
+#wa-btn:hover{transform:scale(1.1) translateY(-3px);box-shadow:0 8px 30px rgba(37,211,102,.65)}
+#wa-btn svg{width:30px;height:30px;fill:#fff;position:relative;z-index:1;flex-shrink:0}
+
 /* ── RESPONSIVE ── */
 @media(max-width:960px){.svc-grid{grid-template-columns:1fr}.why-grid{grid-template-columns:1fr}}
 @media(max-width:768px){
@@ -286,18 +364,19 @@ footer{padding:2.5rem;display:flex;align-items:center;justify-content:space-betw
 <nav id="nav">
   <a href="#hero" class="nav-logo">
     <img src="assets/logo.png" alt="BinaryStar Tech" onerror="this.style.display='none'">
-    <div class="nav-logo-t">Binary Star Tech</div>
+    <div class="nav-logo-t">BinaryStar Tech</div>
   </a>
   <ul>
     <li><a href="#sobre-wrap">Nosotros</a></li>
     <li><a href="#svc-wrap">Servicios</a></li>
-    <li><a href="#proc-wrap">Proceso</a></li>
+    <li><a href="#como-wrap">Proceso</a></li>
     <li><a href="#cont-wrap" class="nav-cta">Contactar</a></li>
   </ul>
 </nav>
 
 <!-- ══ HERO ══ -->
 <section id="hero">
+  <canvas id="starsCanvas"></canvas>
   <canvas id="heroCanvas"></canvas>
   <div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
   <div class="h-inner">
@@ -316,7 +395,7 @@ footer{padding:2.5rem;display:flex;align-items:center;justify-content:space-betw
 <!-- TICKER -->
 <div class="ticker-wrap">
   <div class="tk-track">
-    <div class="tk-i hi">BINARY STAR TECH</div>
+    <div class="tk-i hi">BINARYSTAR TECH</div>
     <div class="tk-i"><span class="tk-dot">◆</span>INTELIGENCIA ARTIFICIAL<span class="tk-dot">◆</span></div>
     <div class="tk-i">AUTOMATIZACIÓN EMPRESARIAL</div>
     <div class="tk-i"><span class="tk-dot">◆</span>SISTEMAS PERSONALIZADOS<span class="tk-dot">◆</span></div>
@@ -325,7 +404,7 @@ footer{padding:2.5rem;display:flex;align-items:center;justify-content:space-betw
     <div class="tk-i">PÁGINAS WEB PREMIUM</div>
     <div class="tk-i"><span class="tk-dot">◆</span>DIAGNÓSTICO GRATUITO<span class="tk-dot">◆</span></div>
     <!-- duplicate for seamless loop -->
-    <div class="tk-i hi">BINARY STAR TECH</div>
+    <div class="tk-i hi">BINARYSTAR TECH</div>
     <div class="tk-i"><span class="tk-dot">◆</span>INTELIGENCIA ARTIFICIAL<span class="tk-dot">◆</span></div>
     <div class="tk-i">AUTOMATIZACIÓN EMPRESARIAL</div>
     <div class="tk-i"><span class="tk-dot">◆</span>SISTEMAS PERSONALIZADOS<span class="tk-dot">◆</span></div>
@@ -444,21 +523,61 @@ footer{padding:2.5rem;display:flex;align-items:center;justify-content:space-betw
 
 <div class="gl"></div>
 
-<!-- ══ PROCESS ══ -->
-<div id="proc-wrap">
+<!-- ══ CASOS DE ÉXITO ══ -->
+<div id="casos-wrap">
   <div class="wrap screen-reveal">
     <div class="s-hdr">
-      <span class="s-lbl rev">cómo trabajamos</span>
-      <div class="cr"><div class="ci2"><h2 class="s-title">Del problema a la solución</h2></div></div>
-      <p class="s-desc rev">Cinco pasos para convertir tu empresa en una máquina eficiente.</p>
+      <span class="s-lbl rev">proyectos</span>
+      <div class="cr"><div class="ci2"><h2 class="s-title">Casos de éxito</h2></div></div>
+      <p class="s-desc rev">Sistemas reales para negocios reales en Cajamarca y el norte del Perú.</p>
     </div>
-    <div class="tl-wrap">
-      <div class="tl-line"></div>
-      <div class="ts stg"><div class="td2">01</div><div class="tb"><h3>Primera reunión — Te escuchamos</h3><p>Nos cuentas cómo funciona tu negocio. Sin tecnicismos. Una conversación real para entender tu situación desde adentro.</p></div></div>
-      <div class="ts stg"><div class="td2">02</div><div class="tb"><h3>Auditoría — Analizamos a fondo</h3><p>Revisamos tu proceso completo. Identificamos qué consume tiempo, qué se repite y dónde está el cuello de botella.</p></div></div>
-      <div class="ts stg"><div class="td2">03</div><div class="tb"><h3>Propuesta — Diseñamos la solución</h3><p>Te presentamos el sistema exacto: cómo funciona, cuánto tiempo ahorra y cuál es la inversión según la complejidad.</p></div></div>
-      <div class="ts stg"><div class="td2">04</div><div class="tb"><h3>Implementación — Construimos</h3><p>Desarrollamos y configuramos el sistema. Te mantenemos informado en cada paso.</p></div></div>
-      <div class="ts stg"><div class="td2">05</div><div class="tb"><h3>Entrega — Piloto automático</h3><p>Probamos juntos, entregamos funcionando y damos soporte para que evolucione con tu negocio.</p></div></div>
+    <div class="casos-grid">
+
+      <div class="caso-card stg" data-tilt>
+        <div class="caso-num">01_lacaleta.app</div>
+        <span class="caso-icon">🦞</span>
+        <div class="caso-tag">App de Gestión</div>
+        <h3 class="caso-name">La Caleta</h3>
+        <div class="caso-biz">Cevichería · 2 locales · Cajamarca</div>
+        <p class="caso-desc">Sistema completo para cevichería con múltiples locales: pedidos por mesa, pantalla de cocina, control de caja y panel del dueño con métricas en tiempo real.</p>
+        <ul class="caso-features">
+          <li>Gestión de pedidos por mesa</li>
+          <li>Pantalla de cocina en tiempo real</li>
+          <li>Control de caja y cierre de turno</li>
+          <li>Panel del dueño con métricas</li>
+        </ul>
+      </div>
+
+      <div class="caso-card stg" data-tilt>
+        <div class="caso-num">02_mviajes.web</div>
+        <span class="caso-icon">✈️</span>
+        <div class="caso-tag">Página Web Premium</div>
+        <h3 class="caso-name">MVIAJES Tours</h3>
+        <div class="caso-biz">Agencia de viajes · Cajamarca</div>
+        <p class="caso-desc">Página web profesional para agencia de viajes con catálogo de destinos, formulario de cotización y presencia digital optimizada para captar clientes en la región.</p>
+        <ul class="caso-features">
+          <li>Diseño premium con animaciones</li>
+          <li>Catálogo de paquetes turísticos</li>
+          <li>Formulario de cotización directa</li>
+          <li>SEO local Cajamarca</li>
+        </ul>
+      </div>
+
+      <div class="caso-card stg" data-tilt>
+        <div class="caso-num">03_donasara.sys</div>
+        <span class="caso-icon">🛒</span>
+        <div class="caso-tag">Sistema de Gestión</div>
+        <h3 class="caso-name">Puesto Doña Sara</h3>
+        <div class="caso-biz">Negocio de mercado · Cajamarca</div>
+        <p class="caso-desc">Sistema de gestión de ventas e inventario para negocio de mercado, con control de stock, registro rápido de ventas y reportes de cierre diario.</p>
+        <ul class="caso-features">
+          <li>Control de inventario en tiempo real</li>
+          <li>Registro rápido de ventas</li>
+          <li>Reportes y cierres diarios</li>
+          <li>Alertas de stock bajo</li>
+        </ul>
+      </div>
+
     </div>
   </div>
 </div>
@@ -481,7 +600,7 @@ footer{padding:2.5rem;display:flex;align-items:center;justify-content:space-betw
         <p class="pd">Automatiza la atención a tus clientes con un chat-bot con IA entrenado en tu negocio. Responde consultas, califica leads y agenda citas — las 24 horas, sin intervención humana.</p>
         <div class="p-tags">
           <div class="ptag"><strong>INCLUYE</strong>Bot IA personalizado</div>
-          <div class="ptag"><strong>INCLUYE</strong>Integración WhatsApp</div>
+          <div class="ptag"><strong>INCLUYE</strong>Integración red social</div>
           <div class="ptag"><strong>INCLUYE</strong>Panel de control</div>
         </div>
         <a href="#cont-wrap" class="btn-c">Consultar inversión →</a>
@@ -518,6 +637,59 @@ footer{padding:2.5rem;display:flex;align-items:center;justify-content:space-betw
 
 <div class="gl"></div>
 
+<!-- ══ CÓMO TRABAJAMOS ══ -->
+<div id="como-wrap">
+  <div class="wrap screen-reveal">
+    <div class="s-hdr">
+      <span class="s-lbl rev">cómo trabajamos</span>
+      <div class="cr"><div class="ci2"><h2 class="s-title">Del problema a la solución</h2></div></div>
+      <p class="s-desc rev">Cuatro pasos claros para convertir tu empresa en una máquina eficiente.</p>
+    </div>
+    <div class="proc2-outer" id="proc2Outer">
+      <div class="proc2-rail">
+        <div class="proc2-rail-bg"></div>
+        <div class="proc2-rail-fill" id="proc2Fill"></div>
+      </div>
+      <div class="proc2-steps">
+        <div class="proc2-step stg">
+          <div class="proc2-dot">01</div>
+          <div class="proc2-step-info">
+            <div class="proc2-icon">🔍</div>
+            <h3 class="proc2-title">Diagnóstico</h3>
+            <p class="proc2-desc">Nos cuentas cómo funciona tu negocio y lo analizamos a fondo. Identificamos qué consume tiempo, qué se repite y dónde está el cuello de botella.</p>
+          </div>
+        </div>
+        <div class="proc2-step stg">
+          <div class="proc2-dot">02</div>
+          <div class="proc2-step-info">
+            <div class="proc2-icon">📋</div>
+            <h3 class="proc2-title">Propuesta</h3>
+            <p class="proc2-desc">Te presentamos el sistema exacto: cómo funciona, cuánto tiempo ahorra y cuál es la inversión según la complejidad.</p>
+          </div>
+        </div>
+        <div class="proc2-step stg">
+          <div class="proc2-dot">03</div>
+          <div class="proc2-step-info">
+            <div class="proc2-icon">⚡</div>
+            <h3 class="proc2-title">Implementación</h3>
+            <p class="proc2-desc">Desarrollamos y configuramos tu sistema. Te mantenemos informado en cada paso hasta dejarlo funcionando.</p>
+          </div>
+        </div>
+        <div class="proc2-step stg">
+          <div class="proc2-dot">04</div>
+          <div class="proc2-step-info">
+            <div class="proc2-icon">🛡️</div>
+            <h3 class="proc2-title">Soporte</h3>
+            <p class="proc2-desc">No entregamos y desaparecemos. Te damos soporte y el sistema evoluciona junto con tu negocio.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="gl"></div>
+
 <!-- ══ CONTACT ══ -->
 <div id="cont-wrap">
   <div class="wrap screen-reveal">
@@ -527,14 +699,14 @@ footer{padding:2.5rem;display:flex;align-items:center;justify-content:space-betw
         <div class="cr"><div class="ci2"><h2 class="s-title">¿Listo para automatizar<br>tu empresa?</h2></div></div>
         <p class="rev">Cuéntanos cuál es tu mayor dolor de cabeza operativo. Analizamos, diseñamos y construimos la solución.</p>
         <div class="rev">
-          <div class="ci"><div class="ci-ico">📱</div><span>927 969 600</span></div>
-          <div class="ci"><div class="ci-ico">📧</div><span>mateosanchezlucasmorales@gmail.com</span></div>
+          <div class="ci"><div class="ci-ico">📱</div><span>+51 923 001 875</span></div>
+          <div class="ci"><div class="ci-ico">📧</div><span>contacto.binarystartech@gmail.com</span></div>
         </div>
       </div>
       <div class="cf rev fr">
         <form id="mainForm" onsubmit="handleForm(event)" data-opened="">
           <!-- Web3Forms config -->
-          <input type="hidden" name="access_key" value="0809be5d-15ac-4441-9d35-423f974f943c">
+          <input type="hidden" name="access_key" value="d935832f-73f3-44e4-bae0-b59ab63ceac0">
           <input type="hidden" name="subject" value="Nuevo contacto desde la web — BinaryStar Tech">
           <input type="hidden" name="from_name" value="Web BinaryStar Tech">
           <!-- Web3Forms honeypot anti-bot -->
@@ -568,15 +740,22 @@ footer{padding:2.5rem;display:flex;align-items:center;justify-content:space-betw
 <!-- FOOTER -->
 <div class="footer-wrap">
   <footer>
-    <div class="f-brand">Binary Star Tech</div>
+    <div class="f-brand">BinaryStar Tech</div>
     <div class="f-copy">© 2026 BinaryStar Tech · Cajamarca, Perú</div>
     <div class="f-links">
       <a href="#svc-wrap">Servicios</a>
-      <a href="#proc-wrap">Proceso</a>
+      <a href="#como-wrap">Proceso</a>
       <a href="#cont-wrap">Contacto</a>
     </div>
   </footer>
 </div>
+
+<!-- WHATSAPP FLOAT -->
+<a id="wa-btn" href="https://wa.me/51923001875?text=Hola%2C%20BinaryStar%20Tech%20%F0%9F%91%8B%20Tengo%20un%20negocio%20y%20quiero%20automatizarlo%20con%20ustedes.%20%C2%BFMe%20cuentan%20c%C3%B3mo%20pueden%20ayudarme%3F" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
 
 <script>
 /* ══ CURSOR ══ */
@@ -684,6 +863,51 @@ window.addEventListener('scroll',()=>nav.classList.toggle('stuck',window.scrollY
   frame();
 })();
 
+/* ══ HERO STARS ══ */
+(function(){
+  const c=document.getElementById('starsCanvas');
+  const ctx=c.getContext('2d');
+  const COLS=['255,255,255','96,208,255'];
+  let stars=[];
+
+  function resize(){c.width=window.innerWidth;c.height=window.innerHeight}
+
+  function init(){
+    stars=Array.from({length:130},()=>({
+      x:Math.random()*c.width,
+      y:Math.random()*c.height,
+      r:Math.random()*1.1+0.2,
+      col:COLS[Math.floor(Math.random()*2)],
+      base:Math.random()*0.32+0.08,
+      phase:Math.random()*Math.PI*2,
+      spd:Math.random()*0.0009+0.0003,
+      vx:(Math.random()-.5)*0.07,
+      vy:(Math.random()-.5)*0.055,
+    }));
+  }
+
+  function frame(){
+    ctx.clearRect(0,0,c.width,c.height);
+    stars.forEach(s=>{
+      s.phase+=s.spd;
+      s.x+=s.vx; s.y+=s.vy;
+      if(s.x<0)s.x=c.width; if(s.x>c.width)s.x=0;
+      if(s.y<0)s.y=c.height; if(s.y>c.height)s.y=0;
+      const op=Math.max(0,s.base+Math.sin(s.phase)*0.1);
+      ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+      ctx.fillStyle=`rgba(${s.col},${op})`;ctx.fill();
+      if(s.r>0.8){
+        ctx.beginPath();ctx.arc(s.x,s.y,s.r*2.8,0,Math.PI*2);
+        ctx.fillStyle=`rgba(${s.col},${op*0.12})`;ctx.fill();
+      }
+    });
+    requestAnimationFrame(frame);
+  }
+
+  resize();init();frame();
+  window.addEventListener('resize',()=>{resize();init()});
+})();
+
 /* ══ HERO CANVAS (network + pulses) ══ */
 (function(){
   const c=document.getElementById('heroCanvas');
@@ -744,7 +968,7 @@ window.addEventListener('scroll',()=>nav.classList.toggle('stuck',window.scrollY
 /* ══ HERO TYPEWRITER ══ */
 (function(){
   const el=document.getElementById('heroTitle');
-  const text='Diseñamos la estructura que impulsa tu visión.';
+  const text='Tu negocio en piloto automático.';
   const bc=el.querySelector('.blink-cur');
   let i=0;
   function type(){
@@ -855,6 +1079,28 @@ const srObs=new IntersectionObserver(es=>{
   es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('open');srObs.unobserve(e.target)}});
 },{threshold:0,rootMargin:'0px 0px 250px 0px'});
 document.querySelectorAll('.screen-reveal').forEach(el=>srObs.observe(el));
+
+/* ══ SECTION ENTRANCE ══ */
+const _secSel='#sobre-wrap,#svc-wrap,#why-wrap,#casos-wrap,#prec-wrap,#como-wrap,#cont-wrap';
+document.querySelectorAll(_secSel).forEach(el=>el.classList.add('sec-reveal'));
+const secObs=new IntersectionObserver(es=>{
+  es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');secObs.unobserve(e.target)}});
+},{threshold:0.06,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll(_secSel).forEach(el=>secObs.observe(el));
+
+/* ══ PROC2 SCROLL LINE ══ */
+(function(){
+  const outer=document.getElementById('proc2Outer');
+  const fill=document.getElementById('proc2Fill');
+  if(!outer||!fill)return;
+  function update(){
+    const r=outer.getBoundingClientRect();
+    const p=Math.min(1,Math.max(0,(window.innerHeight*0.72-r.top)/r.height));
+    fill.style.width=(p*100)+'%';
+  }
+  window.addEventListener('scroll',update,{passive:true});
+  update();
+})();
 
 /* ══ FORM — Web3Forms ══ */
 const form=document.getElementById('mainForm');
